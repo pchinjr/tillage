@@ -1,129 +1,137 @@
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-* {
+/* Base Styles */
+body {
+  background-color: #f0f5f1;
+  color: #2e4052;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-}
-button {
-  color: inherit;
-}
-button, [role="button"] {
-  cursor: pointer;
-}
-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  font-size: 1em;
-}
-img,
-svg {
-  display: block;
-}
-img,
-video {
-  max-width: 100%;
-  height: auto;
+  padding: 0;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-html {
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+.container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: background-color 0.5s;
 }
-.transition-colors {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+
+h2 {
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.my-6 {
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+
+.typing-area {
+  width: 100%;
+  height: 300px;
+  font-size: 18px;
+  padding: 20px;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: #f9fafb;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: background-color 0.5s, color 0.5s;
 }
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+
+.typing-area::placeholder {
+  color: #a0a9b4;
+  font-style: italic;
 }
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+
+/* Remove scrollbars when not needed */
+.typing-area::-webkit-scrollbar {
+  width: 0;
 }
-.my-4 {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+.typing-area {
+  scrollbar-width: none; /* Firefox */
 }
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
 }
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+
+.container.dark-mode {
+  background-color: #252526;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
-.py-8 {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+
+.typing-area.dark-mode {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
 }
-.bg-\[\#86efac\] {
-  background-color: #86efac;
+
+.typing-area.dark-mode::placeholder {
+  color: #6a6a6a;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-.py-6 {
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
-}
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-.py-1 {
-  padding-bottom: 0.25rem;
-  padding-top: 0.25rem;
-}
-.border-gray-500 {
-  border-color: #6b7280;
-}
-.bg-white {
-  background-color: #fff;
-}
-.flex {
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   display: flex;
-}
-.gap-8 {
-  grid-gap: 2rem;
-  gap: 2rem;
-}
-.font-bold {
-  font-weight: 700;
-}
-.max-w-screen-md {
-  max-width: 768px;
-}
-.flex-col {
-  flex-direction: column;
-}
-.items-center {
   align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
-.justify-center {
-  justify-content: center;
+
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  background-color: #a0a9b4;
+  border-radius: 15px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
 }
-.border-2 {
-  border-width: 2px;
+
+.toggle-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s;
 }
-.rounded {
-  border-radius: 0.25rem;
+
+/* Icons */
+.dark-mode-toggle svg {
+  width: 24px;
+  height: 24px;
 }
-.hover\:bg-gray-200:hover {
-  background-color: #e5e7eb;
+
+/* Dark Mode Styles for Toggle */
+body.dark-mode .toggle-switch {
+  background-color: #6a6a6a;
 }
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+
+body.dark-mode .toggle-switch::before {
+  transform: translateX(25px);
+}
+
+/* Adjust Icon Colors in Dark Mode */
+body.dark-mode #moonIcon path {
+  fill: #FFA500; /* Adjusted color to make moon icon visible */
+}
+
+body.dark-mode #sunIcon {
+  display: none;
+}
+
+body:not(.dark-mode) #moonIcon {
+  display: none;
+}
+
+body:not(.dark-mode) #sunIcon {
+  display: block;
 }
