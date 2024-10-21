@@ -1,25 +1,19 @@
 import { JSX } from "preact";
 
-export default function Header(
-  { username }: { username: string | null },
-): JSX.Element {
+export default function Header({ username }: { username: string | null }): JSX.Element {
   return (
     <header class="header">
-      <h1 style="text-align: center">Peaceful Typing Garden</h1>
-      {username
-        ? (
+      <h1 class="title">Peaceful Typing Garden</h1>
+      <div class="auth-container">
+        {username ? (
           <>
-            <p>Welcome, {username}!</p>
-            <p>
-              <a href="/signout">Log out</a>
-            </p>
+            <p class="welcome-message">Welcome, {username}!</p>
+            <a href="/signout" class="button logout-button">Log out</a>
           </>
-        )
-        : (
-          <p>
-            <a href="/signin">Log in with GitHub</a>
-          </p>
+        ) : (
+          <a href="/signin" class="button login-button">Log in with GitHub</a>
         )}
+      </div>
     </header>
   );
 }

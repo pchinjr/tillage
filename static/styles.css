@@ -15,6 +15,7 @@ body {
   background-color: #ffffff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  overflow: visible;
   transition: background-color 0.5s;
 }
 
@@ -26,6 +27,7 @@ h2 {
 
 .typing-area {
   width: 100%;
+  max-width: 100%; /* Prevent overflow beyond the parent container */
   height: 300px;
   font-size: 18px;
   padding: 20px;
@@ -57,12 +59,20 @@ body.dark-mode {
   color: #d4d4d4;
 }
 
-.container.dark-mode {
+.container {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+body.dark-mode .container {
   background-color: #252526;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.typing-area.dark-mode {
+.typing-area {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+body.dark-mode .typing-area {
   background-color: #1e1e1e;
   color: #d4d4d4;
 }
@@ -134,4 +144,82 @@ body:not(.dark-mode) #moonIcon {
 
 body:not(.dark-mode) #sunIcon {
   display: block;
+}
+
+/* Header Styles */
+header.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f4f8; /* Light, calming background color */
+  padding: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  transition: background-color 0.5s, border-bottom-color 0.5s;
+}
+
+body.dark-mode header.header {
+  background-color: #2e2e2e;
+  border-bottom-color: #444444;
+}
+
+h1.title {
+  font-size: 2em;
+  color: #2c3e50; /* Deep blue for the title */
+  text-align: center;
+  margin-bottom: 10px;
+  transition: color 0.5s;
+}
+
+body.dark-mode h1.title {
+  color: #d4d4d4;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between elements in the container */
+}
+
+.welcome-message {
+  font-size: 1.2em;
+  color: #4caf50; /* Green to indicate a positive, welcoming tone */
+  transition: color 0.5s;
+}
+
+body.dark-mode .welcome-message {
+  color: #8bc34a; /* Lighter green for dark mode */
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, filter 0.3s, color 0.3s;
+}
+
+.login-button {
+  background-color: #4285f4; /* Blue for login */
+  color: #fff;
+}
+
+body.dark-mode .login-button {
+  background-color: #357ae8; /* Slightly darker blue for dark mode */
+}
+
+.logout-button {
+  background-color: #e74c3c; /* Red for logout */
+  color: #fff;
+}
+
+body.dark-mode .logout-button {
+  background-color: #c0392b; /* Darker red for dark mode */
+}
+
+.button:hover {
+  filter: brightness(0.9); /* Make buttons slightly darker when hovered */
 }
