@@ -2,7 +2,7 @@
 body {
   background-color: #f0f5f1;
   color: #2e4052;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   transition: background-color 0.5s, color 0.5s;
@@ -93,7 +93,7 @@ body.dark-mode {
 }
 
 .toggle-switch::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
@@ -121,7 +121,7 @@ body.dark-mode .toggle-switch::before {
 
 /* Adjust Icon Colors in Dark Mode */
 body.dark-mode #moonIcon path {
-  fill: #FFA500; /* Adjusted color to make moon icon visible */
+  fill: #ffa500; /* Adjusted color to make moon icon visible */
 }
 
 body.dark-mode #sunIcon {

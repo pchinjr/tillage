@@ -1,12 +1,16 @@
 import { JSX } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 interface FlowerGardenProps {
   flowers: { id: number; left: string; bottom: string }[];
 }
 
-export default function FlowerGarden({ flowers }: FlowerGardenProps): JSX.Element {
-  const [flowerColors, setFlowerColors] = useState<{ [key: number]: string }>({});
+export default function FlowerGarden(
+  { flowers }: FlowerGardenProps,
+): JSX.Element {
+  const [flowerColors, setFlowerColors] = useState<{ [key: number]: string }>(
+    {},
+  );
 
   useEffect(() => {
     const newColors = { ...flowerColors };

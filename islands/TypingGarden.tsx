@@ -6,7 +6,9 @@ export default function TypingGarden(): JSX.Element {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [deletionTimer, setDeletionTimer] = useState<number | null>(null);
   const [lastInputValue, setLastInputValue] = useState<string>("");
-  const [flowers, setFlowers] = useState<{ id: number; left: string; bottom: string }[]>([]);
+  const [flowers, setFlowers] = useState<
+    { id: number; left: string; bottom: string }[]
+  >([]);
 
   const startDeletionTimer = (initialDelay: number) => {
     if (deletionTimer) {
@@ -94,7 +96,12 @@ export default function TypingGarden(): JSX.Element {
         autocomplete="off"
         placeholder="Start typing and let it all go..."
         onInput={handleInput}
-        style={{ width: "100%", height: "300px", padding: "20px", fontSize: "18px" }}
+        style={{
+          width: "100%",
+          height: "300px",
+          padding: "20px",
+          fontSize: "18px",
+        }}
       />
       {flowers.length > 0 && <FlowerGarden flowers={flowers} />}
     </div>
