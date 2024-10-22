@@ -23,16 +23,8 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - name: Install step
-        run: "export GITHUB_CLIENT_ID=Ov23lio6ZzzBCBVjVChQ >> $GITHUB_ENV && export GITHUB_CLIENT_SECRET=07f3d598a9378bdb89c56835a1c50b17442e989e && echo $GITHUB_CLIENT_ID"
-
       - name: Build step
-        run: "deno task build"
+        run: "GITHUB_CLIENT_ID=Ov23lio6ZzzBCBVjVChQ GITHUB_CLIENT_SECRET=07f3d598a9378bdb89c56835a1c50b17442e989e deno run -A --unstable-kv --allow-env=GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET dev.ts build"
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
