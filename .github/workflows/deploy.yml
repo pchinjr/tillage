@@ -29,7 +29,7 @@ jobs:
           node-version: lts/*
 
       - name: Install step
-        run: "export GITHUB_CLIENT_ID=Ov23lio6ZzzBCBVjVChQ && export GITHUB_CLIENT_SECRET=07f3d598a9378bdb89c56835a1c50b17442e989e && echo GITHUB_CLIENT_ID"
+        run: "export GITHUB_CLIENT_ID=Ov23lio6ZzzBCBVjVChQ && export GITHUB_CLIENT_SECRET=07f3d598a9378bdb89c56835a1c50b17442e989e && echo $GITHUB_CLIENT_ID"
 
       - name: Build step
         run: "deno task build"
