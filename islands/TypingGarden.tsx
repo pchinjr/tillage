@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "preact/hooks";
 import { JSX } from "preact";
+import { useEffect, useRef, useState } from "preact/hooks";
 import FlowerGarden from "../islands/FlowerGarden.tsx";
 
 export default function TypingGarden(): JSX.Element {

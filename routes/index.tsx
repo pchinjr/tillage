@@ -4,18 +4,27 @@ import DarkModeToggle from "../islands/DarkModeToggle.tsx";
 import { useEffect } from "preact/hooks";
 import { Handlers, PageProps } from "$fresh/server.ts";
 
+import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
+const { getSessionId } = createHelpers(
+  createGitHubOAuthConfig(),
+);
+
+const kv = await Deno.openKv();
+
 export const handler: Handlers = {
   async GET(req, ctx) {
-    // Parse the username from cookies
-    const cookieHeader = req.headers.get("cookie") || "";
-    const cookies = new Map(
-      cookieHeader.split("; ").map((c) => c.split("=") as [string, string]),
-    );
-    const username = cookies.get("username")
-      ? decodeURIComponent(cookies.get("username")!)
-      : null;
-
-    return await ctx.render({ username });
+    const session = await getSessionId(req);
+    if (session) {
+      const sessionLookup = await kv.get(["sessions", session]);
+      console.log(sessionLookup);
+      const userLookup = await kv.get(["users", sessionLookup.value.user]);
+      console.log(userLookup);
+      return await ctx.render({
+        username: userLookup.value.name,
+        userId: userLookup.value.id,
+      });
+    }
+    return await ctx.render({ username: null });
   },
 };
 
