@@ -1,16 +1,24 @@
-import { JSX } from "preact";
+import { User } from "@/utils/db.ts";
 
-export default function Header(
-  { username }: { username: string | null },
-): JSX.Element {
+export interface HeaderProps {
+  /** Currently signed-in user */
+  sessionUser?: User;
+  /**
+   * URL of the current page. This is used for highlighting the currently
+   * active page in navigation.
+   */
+  url: URL;
+}
+
+export default function Header(props: HeaderProps) {
   return (
     <header class="header">
       <h1 class="title">Peaceful Typing Garden</h1>
       <div class="auth-container">
-        {username
+        {props.sessionUser
           ? (
             <>
-              <p class="welcome-message">Welcome, {username}!</p>
+              <p class="welcome-message">Welcome, {props.sessionUser.login}!</p>
               <a href="/signout" class="button logout-button">Log out</a>
             </>
           )

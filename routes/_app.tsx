@@ -1,6 +1,7 @@
-import { type PageProps } from "$fresh/server.ts";
+import type { State } from "@/plugins/session.ts";
+import { defineApp } from "$fresh/server.ts";
 
-export default function App({ Component }: PageProps) {
+export default defineApp<State>((_, ctx) => {
   return (
     <html>
       <head>
@@ -10,8 +11,8 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body>
-        <Component />
+        <ctx.Component />
       </body>
     </html>
   );
-}
+});

@@ -21,6 +21,7 @@
     "**/_fresh/*"
   ],
   "imports": {
+    "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "$std/": "https://deno.land/std@0.216.0/",
     "@deno/kv-oauth": "jsr:@deno/kv-oauth@^0.10.0",

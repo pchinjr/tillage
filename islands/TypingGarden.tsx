@@ -1,8 +1,15 @@
 import { JSX } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
-import FlowerGarden from "../islands/FlowerGarden.tsx";
+import FlowerGarden from "@/islands/FlowerGarden.tsx";
 
-export default function TypingGarden(): JSX.Element {
+export interface TypingGardenProps {
+  /** Endpoint URL of the REST API to make the fetch request to */
+  endpoint: string;
+  /** Whether the user is signed-in */
+  isSignedIn: boolean;
+}
+
+export default function TypingGarden(_props: TypingGardenProps): JSX.Element {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [deletionTimer, setDeletionTimer] = useState<number | null>(null);
   const [lastInputValue, setLastInputValue] = useState<string>("");
@@ -58,6 +65,40 @@ export default function TypingGarden(): JSX.Element {
     }
     startDeletionTimer(5000);
   };
+
+  const saveFlowerState = async () => {
+    if (_props.isSignedIn) {
+      await fetch(`${_props.endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ flowers }),
+      });
+    }
+  };
+
+  const loadFlowerState = async () => {
+    if (_props.isSignedIn) {
+      const res = await fetch(`${_props.endpoint}`, {
+        method: "GET",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setFlowers(data.flowers);
+      }
+    }
+  };
+
+  useEffect(() => {
+    loadFlowerState();
+  }, []);
+
+  useEffect(() => {
+    if (flowers.length > 0) {
+      saveFlowerState();
+    }
+  }, [flowers]);
 
   useEffect(() => {
     if (!inputRef.current) return;
