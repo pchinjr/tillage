@@ -164,17 +164,18 @@ export default function TypingGarden(_props: TypingGardenProps): JSX.Element {
     <div class="container" style={{ position: "relative" }}>
       <h2>Let Thoughts Grow</h2>
       <textarea
+        class="typing-area"
         ref={inputRef}
         id="userInput"
         autocomplete="off"
         placeholder="Start typing and let it all go..."
         onInput={handleInput} // Call handleInput whenever the user types
-        style={{
-          width: "100%",
-          height: "300px",
-          padding: "20px",
-          fontSize: "18px",
-        }}
+        // style={{
+        //   width: "100%",
+        //   height: "300px",
+        //   padding: "20px",
+        //   fontSize: "18px",
+        // }}
       />
       {flowers.length > 0 && <FlowerGarden flowers={flowers} />}{" "}
       {/* Render flowers if any exist */}
