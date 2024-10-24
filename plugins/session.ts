@@ -68,14 +68,6 @@ export default {
       middleware: { handler: setSessionState }, // Set session state for the request
     },
     {
-      path: "/account", // Protect the "/account" route
-      middleware: { handler: ensureSignedIn }, // Ensure the user is signed in before accessing
-    },
-    {
-      path: "/dashboard", // Protect the "/dashboard" route
-      middleware: { handler: ensureSignedIn }, // Ensure the user is signed in before accessing
-    },
-    {
       path: "/api/flowers", // Protect the "/api/flowers" endpoint
       middleware: { handler: ensureSignedIn }, // Ensure the user is signed in before accessing
     },

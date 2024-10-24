@@ -8,48 +8,48 @@ if (
 }
 export const kv = await Deno.openKv(path);
 
-export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
-  return await Array.fromAsync(iter, ({ value }) => value);
-}
+// export async function collectValues<T>(iter: Deno.KvListIterator<T>) {
+//   return await Array.fromAsync(iter, ({ value }) => value);
+// }
 
-export interface Item {
-  // Uses ULID
-  id: string;
-  userLogin: string;
-  title: string;
-  url: string;
-  score: number;
-}
+// export interface Item {
+//   // Uses ULID
+//   id: string;
+//   userLogin: string;
+//   title: string;
+//   url: string;
+//   score: number;
+// }
 
-export async function createItem(item: Item) {
-  const itemsKey = ["items", item.id];
-  const itemsByUserKey = ["items_by_user", item.userLogin, item.id];
+// export async function createItem(item: Item) {
+//   const itemsKey = ["items", item.id];
+//   const itemsByUserKey = ["items_by_user", item.userLogin, item.id];
 
-  const res = await kv.atomic()
-    .check({ key: itemsKey, versionstamp: null })
-    .check({ key: itemsByUserKey, versionstamp: null })
-    .set(itemsKey, item)
-    .set(itemsByUserKey, item)
-    .commit();
+//   const res = await kv.atomic()
+//     .check({ key: itemsKey, versionstamp: null })
+//     .check({ key: itemsByUserKey, versionstamp: null })
+//     .set(itemsKey, item)
+//     .set(itemsByUserKey, item)
+//     .commit();
 
-  if (!res.ok) throw new Error("Failed to create item");
-}
+//   if (!res.ok) throw new Error("Failed to create item");
+// }
 
-export async function getItem(id: string) {
-  const res = await kv.get<Item>(["items", id]);
-  return res.value;
-}
+// export async function getItem(id: string) {
+//   const res = await kv.get<Item>(["items", id]);
+//   return res.value;
+// }
 
-export function listItems(options?: Deno.KvListOptions) {
-  return kv.list<Item>({ prefix: ["items"] }, options);
-}
+// export function listItems(options?: Deno.KvListOptions) {
+//   return kv.list<Item>({ prefix: ["items"] }, options);
+// }
 
-export function listItemsByUser(
-  userLogin: string,
-  options?: Deno.KvListOptions,
-) {
-  return kv.list<Item>({ prefix: ["items_by_user", userLogin] }, options);
-}
+// export function listItemsByUser(
+//   userLogin: string,
+//   options?: Deno.KvListOptions,
+// ) {
+//   return kv.list<Item>({ prefix: ["items_by_user", userLogin] }, options);
+// }
 
 export interface User {
   // AKA username
