@@ -6,7 +6,6 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_flowers from "./routes/api/flowers.ts";
 import * as $index from "./routes/index.tsx";
-import * as $DarkModeToggle from "./islands/DarkModeToggle.tsx";
 import * as $FlowerGarden from "./islands/FlowerGarden.tsx";
 import * as $TypingGarden from "./islands/TypingGarden.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -19,7 +18,6 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/DarkModeToggle.tsx": $DarkModeToggle,
     "./islands/FlowerGarden.tsx": $FlowerGarden,
     "./islands/TypingGarden.tsx": $TypingGarden,
   },

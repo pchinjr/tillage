@@ -1,7 +1,6 @@
 import type { State } from "@/plugins/session.ts";
 import Header from "@/components/Header.tsx";
 import TypingGarden from "@/islands/TypingGarden.tsx";
-import DarkModeToggle from "@/islands/DarkModeToggle.tsx";
 import { defineRoute } from "$fresh/server.ts";
 
 export default defineRoute<State>((_req, ctx) => {
@@ -10,7 +9,6 @@ export default defineRoute<State>((_req, ctx) => {
 
   return (
     <div>
-      <DarkModeToggle />
       <Header url={ctx.url} sessionUser={ctx.state.sessionUser} />
       <TypingGarden isSignedIn={isSignedIn} endpoint={endpoint} />
     </div>
